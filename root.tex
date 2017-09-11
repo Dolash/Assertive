@@ -108,11 +108,11 @@ There is also evidence that humans are willing to reciprocate with robots that a
 
 \subsection{Autonomous Robot Behavior}
 
-One assumption made here is that multi-robot systems introduced to human environments will be autonomous and governed by behaviors like the one we propose for doorway negotiation. [New reference to bridge the gap on why autonomous, mobile robots are a good choice for this problem]
+One assumption made here is that multi-robot systems introduced to human environments will be autonomous and governed by behaviors like the one we propose for doorway negotiation. [New reference to bridge the gap on why autonomous, distributed robots are a good choice for this problem]
 
 %It can be difficult to find a consistent, agreed-upon definition for autonomy, but Bekey suggests\cite{c10} ``Autonomy refers to systems capable of operating in the real-world environment without any form of external control for extended periods of time." This definition is broad, but it captures the benefit we articulated earlier of integrating robots into existing human (``real world") environments who are capable of holding up their end during social interactions without direct guidance(``external control"). 
 
-Existing research on multi-robot systems in the workplace have often had these autonomous characteristics. The STRANDS project\cite{c11} is a sizable example where teams of robots are deployed to real office spaces for months at a time, with the stated goal of learning how to adapt and survive changes in the environment that would be fatally outside the scope of less independent robot systems. Dealing with humans around doorways is also an issue they encountered, but addressed only indirectly with passivity on the part of the robot.
+Existing research on multi-robot systems in the workplace have often had these autonomous characteristics. The STRANDS project\cite{c11} is a sizable example where teams of robots are deployed to real office spaces for months at a time, with the stated goal of learning how to adapt and survive changes in the environment that would be fatally outside the scope of less independent robot systems. Dealing with humans around doorways is also an issue they encountered, but addressed only indirectly with passivity on the part of the robot, where humans around doors are treated as obstacles blocking them off.
 
 These autonomous, distributed characteristics will also be present in the systems coming to share human spaces that we mentioned earlier. The self-driving car is the most obvious example, referred to almost interchangeably as the autonomous car in the popular press\cite{c12}. The conditions involved in driving – wide open spaces, large numbers of human and robot agents, the need to act quickly without guidance in network-denied environments – all necessitate an autonomous and distributed approach.
 
@@ -168,7 +168,7 @@ The final behavior flowchart can be seen in Figure~\ref{fig:Assertive}. While th
 
 \section{EXPERIMENT AND STUDY}
 
-Our behaviour is presented. In order to test this theory, we have three hypotheses concerning our system that we evaluated through our robot-robot experiment and human-robot study:
+Our behaviour is presented as a socially compliant means to resolving navigation deadlocks around doors that humans can recognize and, through reciprocation, cooperate with to the benefit of the shared space. In order to test this theory, we have three hypotheses concerning our system that we evaluated through our robot-robot experiment and human-robot study:
 
 \textbf{H1)} The assertive behaviour resolves doorway navigation deadlocks for both human and robot agents.
 
@@ -198,6 +198,13 @@ The expected outcome for each trial would be that the more assertive, nearer rob
 \subsection{Human-Robot Study}
 
 20 participants were recruited from the general population of Simon Fraser University, including 8 women and 12 men, and were not compensated for their assistance.
+
+     \begin{figure}
+      \centering
+      \includegraphics[scale=0.5]{test_example.png}
+      \caption{Example of a human study participant deferring to the robot's right of way}
+      \label{fig:Example}
+   \end{figure}
 
 Each participant was brought to the test environment and seated across from the test conductor in the smaller room, passing by the robot prepared for the experiment in the larger room. Every trial had the participant drop a document in a box in the larger room while the robot entered the smaller room to pick up some excess paperwork, causing incidental interactions at the doorway dividing the two rooms. Each participant completed five trials:
 
@@ -274,7 +281,7 @@ What other feedback?\\
      \begin{figure}
       \centering
       \includegraphics{outcomes.png}
-      \caption{Outcomes Of Human-Robot Study Interactions }
+      \caption{Outcomes Of Human-Robot Study Interactions Per Trial}
       \label{fig:Outcomes}
    \end{figure}
 
@@ -290,7 +297,7 @@ D) Those who always respected the robot's right of way.
 
 Our 20 participants were divided relatively evenly between these four categories, with five in A), four in B), five in C) and six in D).
  
-\textbf{2) Timing:} Our data from both the robot-robot experiment and human-robot study is collected in Figure~\ref{fig:Interaction} for time both subjects spent interacting during each trial and Figure~\ref{fig:Trial} for total time until both subjects reach their destinations, with standard deviation error bars. In each study trial, part 1 was the interaction where the human had right of way, while the robot had right of way in part 2. For context, one Pioneer making the 6m journey from one starting point to the other uninterrupted takes approximately 12 seconds.   
+\textbf{2) Timing:} Our data from both the robot-robot experiment and human-robot study is collected in Figure~\ref{fig:Interaction} for time both subjects spent interacting during each trial and Figure~\ref{fig:Trial} for total time until both subjects reach their destinations, with standard deviation error bars here and elsewhere. In each study trial, part 1 was the interaction where the human had right of way, while the robot had right of way in part 2. For context, one Pioneer making the 6m journey from one starting point to the other uninterrupted takes approximately 12 seconds.   
  
 
        \begin{figure}
@@ -310,7 +317,7 @@ Our 20 participants were divided relatively evenly between these four categories
 
 The robot-robot behavior is much slower than any human-involved behavior, however, the human-robot interactions observed in the four non-teleoperated trials are only marginally slower than the interaction in the second trial, where a human is controlling the robot. This suggests that in terms of efficiency, our behavior may already be operating close to what may be possible for the given robot platform. While an abundance of caution on the part of the robots may make the behavior slow on its own, human interlocutors compensate during interactions in much the same way regardless of how the robot is being controlled. 
 
-If we break down these time results according to our four participant behaviour categories, seen in Figure~\ref{fig:Respect}, we found that participants who did not respect the robot's right of way had higher trial times than those who did. This reflects that while going out of turn might benefit the human, it degrades the throughput of the overall system. 
+If we break down these time results according to our four participant behaviour categories, seen in Figure~\ref{fig:Respect}, we found that participants who did not respect the robot's right of way had higher trial times than those who did. This reflects that while going out of turn might benefit the human individually, it degrades the throughput of the overall environment. 
      \begin{figure}
       \centering
       \includegraphics{Robot_right.png}
@@ -358,6 +365,9 @@ Trial 5 & 4\\
 
 What we do see are common justifications shared by participants who chose the same trial as their preference. All three participants who chose trial 4 cited that they preferred the decision on whether to defer to the robot or not be taken out of their hands by the test conductor, and similarly those who chose trial 2 mostly cited the speed of the interaction when the robot was being teleoperated. Participants who chose trials 1, 3 and 5 mentioned the robot interacted smoothly, sometimes even directly referencing the humanlike characteristics of the behaviour.
 
+The teleoperated trial was not notably preferred by participants in questionnaire results and that those who chose it did not cite the human operator as a cause, which suggests who was ultimately in control was not a significant factor in participant reaction to the robot. [Participant comments focus on the physical touches that make the robot interactions smoother]
+
+
 \section{DISCUSSION}
 
 [Still being heavily reworked in light of the developing plan for the results section. The new hypotheses are stronger, clearer and easier to argue for but do need all the results in. The other subsections will likely be reworked depending on whether certain points end up in earlier sections or are left over to talk about at the end, like some of the participant feedback on enhancing the behaviour.]
@@ -378,7 +388,7 @@ This leads into our third hypothesis.[ongoing]
 
 %The outcome data also holds promising results for our third hypothesis – while a plurality of participants did not recognize the robot’s right of way, a significant portion did, and more importantly a significant portion more did upon learning in the fourth trial that they could. For those who did, [speculative] the effect on performance saw a slight increase in interaction time in return for a decrease in overall trial time. This is expanded on in the accounts that include [account analysis ongoing], and the post-test questionnaires where [also ongoing].
 
-That the teleoperated trial was not notably preferred by participants in questionnaire results and that those who chose it did not cite the human operator as a cause supports that who was ultimately in control was not a significant factor.
+
 
 %Based on these results, we can conclude that while our behavior did not achieve perfect equivalence between humans and robots in navigation, it is nevertheless a functional approach for negotiating doorway passage in mixed human-robot company. It provoked the beginnings of social recognition in some participants, demonstrating the gap is bridgeable and that when it is bridged the performance of the group benefits. 
 
