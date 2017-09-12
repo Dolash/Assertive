@@ -181,7 +181,7 @@ Our behaviour is presented as a socially compliant means to resolving navigation
 
 Testing was divided into two discrete phases – one set of experimental robot-robot interactions, and one user study of human-robot interactions. It is important to note that the environment, robots, software and parameters were the same in both tests, as they would be in a live system.
 
-The test environment for all experiments was a lab with a wall erected to divide the test space into two smaller rooms and with an open, standard-sized (97cm wide) doorway centered in it. Subjects in the smaller room would begin 2m from the door, while subjects in the larger room would begin 4m away. This would ensure the closer party in each interaction would have right of way by arriving at the door first, setting up a natural outcome for each deadlock we would expect of two humans.
+The test environment for all experiments was a lab with a wall erected to divide the test space into two smaller rooms and with an open, standard-sized (97cm wide) doorway centered in it. Subjects in the smaller room would begin 2m from the door, while subjects in the larger room would begin 4m away. This ensured the closer party in each interaction should have right of way by arriving at the door first, as we would expect from two humans in this setting (all else being equal).
 
 The robots used were Pioneer 3DXs, as seen in Figure~\ref{fig:Triptych}. Both were mounted with forward-facing range-finding lasers to provide navigational and detection data, using comparisons between a known map of the environment to determine if something in front is an obstacle or a possible interaction partner without distinguishing between different possible partners. They used rear-mounted sonars while retreating to avoid collisions. They had a top speed of 0.5m/s and stood 0.74m tall thanks to a paperwork-storing box used as part of the study, which gave them just enough physical presence to make stepping over them impractical but without posing a threat to participants.
 
@@ -190,14 +190,14 @@ Sensor data and user feedback were deliberately limited in this implementation t
 
 \subsection{Robot-Robot Experiment}
 
-Each robot was set at their respective starting points either side of the doorway. At the beginning of each trial, the further robot would be given the instruction to drive to the other robot’s starting point, and after approximately one second the closer robot would receive the same instruction. This ensured the robot starting inside the smaller room would most likely reach the doorway first (with some variability on their exact meeting point) and so would also be given the higher ``assertiveness" variable.
+Each robot was set at their respective starting points either side of the doorway. At the beginning of each trial, the further robot would be given the instruction to drive to the other robot’s starting point, and after approximately one second the closer robot would receive the same instruction. This ensured the robot starting inside the smaller room would most likely reach the doorway first (with some variability on their exact meeting point) and was given the higher ``assertiveness" variable to reflect their expected right of way.
 
-The expected outcome for each trial would be that the more assertive, nearer robot would win the ensuing contest and drive the other robot to retreat until it could pass, whereupon the other robot would resume and finish its journey. Once both robots had reached the other’s starting point, they would swap assertiveness values and repeat the process. This was repeated 25 times, with the outcomes, interaction times and errors or other incidents recorded. 
+The desired outcome for each trial was that the more assertive, nearer robot would win the ensuing contest and have the other robot retreat until it could pass, whereupon the other robot would resume and finish its journey. Once both robots had reached their destinations, they would swap assertiveness values and goals and repeat the process. This was repeated 44 times, with the outcomes, interaction times and errors or other incidents recorded. 
 
 
 \subsection{Human-Robot Study}
 
-20 participants were recruited from the general population of Simon Fraser University, including 8 women and 12 men, and were not compensated for their assistance.
+20 participants were recruited from the general population of Simon Fraser University, including 8 women and 12 men. They were not compensated for their assistance.
 
      \begin{figure}
       \centering
@@ -206,11 +206,11 @@ The expected outcome for each trial would be that the more assertive, nearer rob
       \label{fig:Example}
    \end{figure}
 
-Each participant was brought to the test environment and seated across from the test conductor in the smaller room, passing by the robot prepared for the experiment in the larger room. Every trial had the participant drop a document in a box in the larger room while the robot entered the smaller room to pick up some excess paperwork, causing incidental interactions at the doorway dividing the two rooms. Each participant completed five trials:
+Each participant was brought to the test environment and seated across from the test conductor in the smaller room, passing by the robot prepared for the experiment in the larger room. Every trial had the participant drop a document in a box in the larger room while the robot entered the smaller room to pick up some excess paperwork from the test conductor, then had the participant and robot return to their starting points. This created two interactions per trial, where we expected the human to have the right of way in the first part and the robot in the second. Each participant completed five trials:
 
-\textbf{1) First Reaction Trial:} Without being informed as to the details of the experiment, the participant was asked to drop their signed consent form in a box on a table in the larger room, while the robot would be called in to collect the reusable part of their consent form. The participant incidentally interacted with the robot around the door as a result, and then again on their return journey. The participant was then informed that these incidental interactions were actually one of the trials, and the intent of the study was to examine their interactions with the robot around the doorway.
+\textbf{1) First Reaction Trial:} Without being informed as to the details of the experiment, the participant was asked to drop their signed consent form in a box on a table in the larger room, while the robot would be called in to collect the reusable part of the form. The participant incidentally interacted with the robot around the door as a result, and then again on their return journey. The participant was then informed that these incidental interactions were actually one of the trials, and the intent of the study was to examine their interactions with the robot around the doorway.
 
-\textbf{2) Teleoperation Trial:} The participant was informed that the test conductor will take in control of the robot via a controller, but to otherwise focus on the robot. 
+\textbf{2) Teleoperation Trial:} The participant was informed that the test conductor will take direct control of the robot via a controller, but to otherwise focus on the robot when deciding when to pass. 
 
 \textbf{3) Full System Trial:} The participant was informed the full autonomous system would now be active and the test conductor would no longer be in control of the robot.
 
@@ -274,7 +274,7 @@ What other feedback?\\
 
 \subsection{Results}
 
-[EDITOR NOTE: Still under development. The goal is to show that outcome results establish the system worked mostly as intended to resolve deadlocks, but also that there are different subgroups of participants based on how much they respected the robot's right of way. The timing data then shows the human-robot interactions are sufficiently timely but also that those who respected that right of way had better trial completion times to support the claim that extending reciprocation of social customs to robots will make for better overall performance. The stickier part is analyzing the survey results and questionnaire answers for evidence that perception of the robot correlated in some way with behaviour and performance, so the latter two subsections are still being worked up.]
+
 
 \textbf{1) Outcome:} The robot-robot interaction experiment had 44 trials, with 5 additional trials discounted due to navigational errors unrelated to our behaviour. Of those 44, 34 trials went exactly as planned.  In four cases each robot believed the other robot was approaching them and both retreated at first, but correctly resolved the interaction on the second attempt, while six trials had recoverable navigational errors unrelated to our behaviour. All trials ended with the correct robot winning the interaction and both arriving at their desired destinations.
 
@@ -285,7 +285,7 @@ What other feedback?\\
       \label{fig:Outcomes}
    \end{figure}
 
-The outcome results for the human-robot interaction study are in Figure~\ref{fig:Outcomes}. The near-unanimous respect for the human's right of way in all trials when the participant was closest to the door is not very revealing, beyond that the behaviour completed obtrusive or aggressive. The bigger challenge to participants came in the second half of each trial, which revealed four discrete categories of participant: 
+The outcome results for the human-robot interaction study are in Figure~\ref{fig:Outcomes}. The near-unanimous respect for the human's right of way in all trials when the participant was closest to the door is not very revealing, beyond that the behaviour completed successfully without being too obtrusive or aggressive. The bigger challenge to participants came in the second half of each trial, which revealed four discrete categories of participant: 
 
 A) Those who would never respect the robot's right of way, sometimes even in trial 4 when specifically asked to. 
 
@@ -315,9 +315,9 @@ Our 20 participants were divided relatively evenly between these four categories
       \label{fig:Trial}
    \end{figure}
 
-The robot-robot behavior is much slower than any human-involved behavior, however, the human-robot interactions observed in the four non-teleoperated trials are only marginally slower than the interaction in the second trial, where a human is controlling the robot. This suggests that in terms of efficiency, our behavior may already be operating close to what may be possible for the given robot platform. While an abundance of caution on the part of the robots may make the behavior slow on its own, human interlocutors compensate during interactions in much the same way regardless of how the robot is being controlled. 
+The robot-robot behavior is much slower than any human-involved behavior, however, the human-robot interactions observed in the four non-teleoperated trials are only marginally slower than the interaction in the second trial, where a human is controlling the robot. This suggests that in terms of efficiency, our behavior may already be operating close to what may be possible for the given robot platform. %While an abundance of caution on the part of the robots makes the behavior relatively slow on its own, human interlocutors compensate during interactions in much the same way regardless of how the robot is being controlled. 
 
-If we break down these time results according to our four participant behaviour categories, seen in Figure~\ref{fig:Respect}, we found that participants who did not respect the robot's right of way had higher trial times than those who did. This reflects that while going out of turn might benefit the human individually, it degrades the throughput of the overall environment. 
+If we break down these time results according to our four participant behaviour categories, seen in Figure~\ref{fig:Respect}, we found that participants who did not respect the robot's right of way had higher trial times than those who did across all trials. This reflects that while going out of turn might benefit the human individually, it degrades the throughput of the overall environment. 
 
      \begin{figure}
       \centering
@@ -326,7 +326,7 @@ If we break down these time results according to our four participant behaviour 
       \label{fig:Respect}
    \end{figure}
 
-\textbf{3) Surveys:} The data from the four Likert-scale questions on the post-trial surveys is collected in Figure~\ref{fig:Questionnaire}. 
+\textbf{3) Surveys:} The data from the four Likert-scale questions on the post-trial surveys is collected in Figure~\ref{fig:Questionnaire}. While the interaction was broadly positively received in each trial, 
  
      \begin{figure*}
       \centering
@@ -336,16 +336,20 @@ If we break down these time results according to our four participant behaviour 
    \end{figure*}
  
 
-Breaking down the survey answers according to our four observed participant behaviours did not reveal, with the exception [ongoing]
+Breaking down the survey answers according to our four observed participant behaviours showed few notable differences . In fact, it is the participants who most respected the robot's right of way in the first trial that gave it low ratings for clear intentions and satisfaction for that trial. A participant who found they could make the robot back down in every confrontation may find the interaction as satisfying as one who chose to respect the robot's right of way every time.
 
-The participants’ accounts of each trial included many notes on small implementation details that could make the interaction more natural. Several participants noted that a human would know which direction to back up in order to clear their way faster, and others suggested that a human would speed up after noticing someone was already getting out of their way to minimize that person's delay. One participant articulated what was effectively a Reciprocal Velocity Obstacle interaction, wanting the robot to cooperate for a close pass rather than one being forced to stop and back away from the other.
+The participants’ accounts of each trial 
 
-Beyond their usefulness in enhancing the system, that the behaviour prompted participants to seek greater reciprocation for the social courtesies they extended the robot suggests the interaction provoked the desired response. [ongoing]
 
-\textbf{4) Post-Test Questionnaire:} The questionnaire data was mostly qualitative, with the partial exception of question three where the participant gave their preferred trial. The overall results for this question are presented in Table 3 (with one abstention), while breaking down these preferences by our four participant behaviour categories saw no significant correlation.
+
+
+
+that the behaviour prompted participants to seek greater reciprocation for the social courtesies they extended the robot suggests the interaction provoked the desired response. [ongoing]
+
+\textbf{4) Post-Test Questionnaire:} The questionnaire data was mostly qualitative, with the partial exception of question three where the participant gave their preferred trial. The overall results for this question are presented in Table 3 (with one abstention).
 
 \begin{table}[h]
-\caption{Number of Participants who Preferred Interaction From Each Trial }
+\caption{Number of Participants who Preferred Each Trial }
 \label{Preferemces}
 \begin{center}
 \begin{tabular}{|c||c|}
@@ -364,28 +368,35 @@ Trial 5 & 4\\
 \end{center}
 \end{table}
 
-What we do see are common justifications shared by participants who chose the same trial as their preference. All three participants who chose trial 4 cited that they preferred the decision on whether to defer to the robot or not be taken out of their hands by the test conductor, and similarly those who chose trial 2 mostly cited the speed of the interaction when the robot was being teleoperated. Participants who chose trials 1, 3 and 5 highlighted understanding the robot's intentions and the sense that it understood theirs, sometimes even directly referencing the humanlike characteristics of the behaviour.
+Breaking down these preferences by our four participant behaviour categories saw no significant correlation. Instead we found common justifications shared by participants who chose the same trial as their preference. All three participants who chose trial 4 cited that they preferred the decision on whether to defer to the robot or not be taken out of their hands, and similarly those who chose trial 2 mostly cited the speed of the interaction when the robot was being teleoperated. Participants who chose one of trials 1, 3 and 5 highlighted understanding the robot's intentions and the sense that it understood theirs, sometimes even directly referencing the humanlike characteristics of the behaviour.
 
-The teleoperated trial was not notably preferred by participants in questionnaire results and that those who chose it did not cite the human operator as a cause, which suggests who was ultimately in control was not a significant factor in participant reaction to the robot. [Participant comments focus on the physical touches that make the robot interactions smoother] [ongoing]
+The first two questions on the post-test questionnaire directly address why the participant would choose to advance or make way. Here, we did see a difference 
 
+The fourth question
+
+Both the fifth question and the interaction accounts from the surveys produced a number of small implementation suggestions to smooth the interaction. Several participants noted that a human would know which direction to back up in order to clear their way faster, and others suggested that a human would speed up after noticing someone was already getting out of their way to minimize that person's delay. Three participants described what was effectively a Reciprocal Velocity Obstacle interaction, where the robot cooperates at distance for a closer pass rather than one being forced to stop and back away from the other. 
 
 \section{DISCUSSION}
-
-[Still being heavily reworked in light of the developing plan for the results section. The new hypotheses are stronger, clearer and easier to argue for but do need all the results in. The other subsections will likely be reworked depending on whether certain points end up in earlier sections or are left over to talk about at the end, like some of the participant feedback on enhancing the behaviour.]
 
 \subsection{Hypotheses}
 
 Our first hypothesis was that our behaviour would resolve doorway navigation deadlocks, and in terms of both parties arriving at their destinations without incident that was the case in almost all trials. Defined more narrowly, we found that our behaviour executed as intended (the party with right of way was allowed to pass first) in virtually every robot-robot tests and those human-robot tests where the human had right of way. 
 
-While most of our participants ignored the robot's right of way during at least some trials, the vast majority could still complete the interaction as intended when asked to do so in trial 4. 
+While most participants ignored the robot's right of way during at least some trials, the vast majority could still complete the interaction as intended when asked to do so in trial 4. With that trial as a baseline, we can therefore say the behaviour succeeded in resolving doorway deadlocks for both humans and robots, contingent on the cooperation of the human.
 
-Our second hypothesis concerns whether respecting right of way increased overall performance, and looking at average trial times showed a marked improvement for those who did. This supports our belief that adopting robots into the social customs of shared human-robot environments will produce better outcomes overall, but that this acceptance hinges on the reciprocation of the participants and their perceptions of the robot.
+Our second hypothesis concerns whether respecting right of way increased overall performance, and looking at average trial times showed a marked improvement for those who did. However, this measure of performance assumes that we are concerned with the throughput of a shared human-robot environment
 
-This leads into our third hypothesis. The gap between compliance in trial 4 and the other trials suggests the issue then may not be with the mechanics of the behaviour, but whether the participant chooses to cooperate. [ongoing]
+This supports our theory that behaviours   for shared human-robot environments will produce better outcomes overall, but will hinge on the acceptance of humans.
+
+This leads into our third hypothesis. The gap between compliance in trial 4 and the other trials suggests the issue is not with the mechanics of the behaviour, but whether it provokes cooperation from the human. 
 
 Participant preferences made clear both the insignificance of the human controller and the willingness, even desire to see the robot as having an intent of its own and recognizing the human's intentions in turn.
 
 
+The teleoperated trial was not notably preferred by participants in questionnaire results and that those who chose it did not cite the human operator as a cause, which suggests who was ultimately in control was not a significant factor in participant reaction to the robot. [Participant comments focus on the physical touches that make the robot interactions smoother] [ongoing]
+
+
+The suggestions from the questionnaire and accounts demonstrated that participants were looking for more reciprocation from the robot for the social courtesies they were extending.
 
 %While there was unmistakably slowdown in the robot-robot interactions, we saw speeds close to capacity in the human-robot trials. That the behavior led to resolving the door deadlock in all trials but one robot-robot case is evidence of functionality. Reliability saw a decisive majority of outcomes break the expected way in robot-robot trials, and while humans did not respect the robot’s right of way in the majority of interaction trials, that the interaction worked as intended during trial 4 when they were instructed to defer suggests this is a perception issue rather than performance.
 
@@ -411,11 +422,11 @@ The simple green/red LED signals also provoked very little participant interest.
 
 \subsection{Future Work}
 
-While we saw promising evidence that our system did provoke some reciprocation from participants, the large proportion who did not respect the robot's right of way shows that work remains in achieving acceptance. 
+While we saw promising evidence that our system did provoke some reciprocation from participants, the large proportion who did not respect the robot's right of way shows that work remains in achieving acceptance.  Establishing that perception of the robot as a human-like, autonomous agent helps it achieve social compliance and overall performance gives us a clear goal to work toward, and user feedback highlighting what additional behaviours would improve the interaction.
 
 Expanding the platform’s sensor capabilities could allow the system to integrate more nuanced information than distance when deciding when to act, like gestures or spoken commands. Though these capabilities were deliberately excluded to focus attention on the performance of the fundamental behavior, participant feedback emphasized the importance of picking up on smaller multi-modal cues to make the interaction more natural.
 
-%One avenue of exploration was revealed by participant accounts of the fifth trial. In some cases, participants found that once they understood how the system worked, a certain amount of the ``magic" was lost and they were less impressed with the robot’s courtesy. Many rated the behavior most highly in the first trial before knowing anything about what to look for or expect, much in the same way that a wizard of Oz experiment often depends on the participant not realizing that the ‘system’ they are interacting with is a mock-up. Perhaps behavior development strategies that move some of the design process out of the developer’s hands, like machine learning, may produce systems whose autonomy humans will be more likely to respect.
+One avenue of exploration was revealed by accounts of the fifth trial. In some cases, particularly the type C participants who stopped respecting the robot's right of way, hearing an explanation of how the behaviour worked turned it into a mere mechanism rather than a social activity. Several chose to play with the robot, deliberately triggering the fight mechanism over and over to see if it would respond as predicted. Perhaps behavior development strategies that obscure the inner workings of a system, like machine learning, will impact human perception of that system.
 
 \section{CONCLUSION}
 
