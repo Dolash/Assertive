@@ -23,7 +23,7 @@
 %\usepackage{amssymb}  % assumes amsmath package installed
 
 \title{\LARGE \bf
-After You: Social Doorway Negotiation for Human-Robot and Robot-Robot Interaction
+After You: Doorway Negotiation for Human-Robot and Robot-Robot Interaction
 }
 
 
@@ -295,29 +295,36 @@ C) Those who respected the robot's right of way until the last trial then change
 D) Those who always respected the robot's right of way. 
 
 Our 20 participants were divided relatively evenly between these four categories, with five type A, four type B, five type C and six type D.
- %IROS: Clarified end-of-interaction qualifier.
-\textbf{2) Timing:} Our data from both the robot-robot experiment and human-robot study is collected in Figure~\ref{fig:Interaction} for time both subjects spent interacting during each trial and Figure~\ref{fig:Trial} for total time until both subjects reached their destinations, both with standard deviation error bars. Interaction time was measured from the point in each video that the robot reacted to the human's presence to the point that both they and the human are once again centered in their respective lanes, and represents a subset of the total time for each trial. In each trial, part 1 was the interaction where the human had right of way, while the robot had right of way in part 2. For context, one Pioneer making the 6m journey from one starting point to the other uninterrupted takes approximately 12 seconds. The robot-robot trial times are included for comparison.  
- %IROS: Put these figures together. May happen without alteration based on final manuscript, otherwise fix
+ %IROS: Clarified end-of-interaction qualifier, modified discussion to be about combined figure
+\textbf{2) Timing:} Our data from both the robot-robot experiment and human-robot study is collected in Figure~\ref{fig:Trial_Interaction} for time both subjects spent interacting during each trial and total time until both subjects reached their destinations, both with standard deviation error bars. Interaction time was measured from the point in each video that the robot reacted to the human's presence to the point that both they and the human are once again centered in their respective lanes, and represents a subset of the total time for each trial. In each trial, part 1 was the interaction where the human had right of way, while the robot had right of way in part 2. For context, one Pioneer making the 6m journey from one starting point to the other uninterrupted takes approximately 12 seconds. The robot-robot trial times are included for comparison.  
+ %IROS: Replacing with one combined figure
 
-       \begin{figure}
+%       \begin{figure}
+ %     \centering
+  %    \includegraphics{interaction_length.png}
+   %   \caption{Average Length Of Each Interaction In Each Trial}
+    %  \label{fig:Interaction}
+   %\end{figure}
+
+
+%     \begin{figure}
+ %     \centering
+  %    \includegraphics{trial_length.png}
+   %   \caption{Average Length Of Each Trial}
+    %  \label{fig:Trial}
+   %\end{figure}
+   
+        \begin{figure}
       \centering
-      \includegraphics{interaction_length.png}
-      \caption{Average Length Of Each Interaction In Each Trial}
-      \label{fig:Interaction}
-   \end{figure}
-
-
-     \begin{figure}
-      \centering
-      \includegraphics{trial_length.png}
-      \caption{Average Length Of Each Trial}
-      \label{fig:Trial}
+      \includegraphics{Interaction_Trial.png}
+      \caption{Average Length Of Each Trial And Interaction}
+      \label{fig:Trial_Interaction}
    \end{figure}
 
 The robot-robot behavior is much slower than any human-robot behavior measured. Thus the human behaviour made a positive contribution to system performance compared to robot-only system. This might be largely explained by  humans moving faster than our robots. However, the human-robot interactions observed in the four non-teleoperated trials are only marginally slower than the interaction in the second trial, where a human is controlling the robot. This suggests that in terms of efficiency, our behavior may already be operating close to what might be possible for our robot platform. Human interlocutors were able to compensate for the relatively cautious speed of the robot regardless of how it was being controlled. 
 
-%IROS: TODO, Significance testing will be here but haven't figured out exactly how to represent results.
-If we break down these time results according to our four participant behavior categories, seen in Figure~\ref{fig:Respect}, we found that participants who did not respect the robot's right of way had higher trial times than those who did across all trials. For trials 1 through 4 t-test results showed [HOW TO PRESENT T-TEST RESULTS HERE?].  This reflects that while going out of turn might benefit the human individually, it degrades the throughput of the overall environment. 
+%IROS: Significance testing done to aggregate results of respecting vs. not-respecting behaviour, with a t-test significance of +99%
+If we break down these time results according to our four participant behavior categories, seen in Figure~\ref{fig:Respect}, we found that participants who did not respect the robot's right of way had higher trial times than those who did across all trials. This is supported via the aggregate trial times of all interactions where the robot was respected versus all interactions where it was not, resulting in averages of 14.3 and 19.6 seconds respectively, with a t-test confidence greater than 99\%.  This reflects that while going out of turn might benefit the human individually, it degrades the throughput of the overall environment. 
 
      \begin{figure}
       \centering
