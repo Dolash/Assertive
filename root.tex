@@ -28,7 +28,7 @@ After You: Doorway Negotiation for Human-Robot and Robot-Robot Interaction
 
 
 \author{Jack Thomas and Richard Vaughan$^{1}$% <-this % stops a space
-\thanks{$^{1}$School of Computing Science, Simon Fraser University, 8888 University Drive, Burnaby, British Columbia, Canada.
+\thanks{$^{1}$School of Computing Science, Simon Fraser University.
         {\tt\small \{jackt,vaughan\}@sfu.ca}}%
 }
 
@@ -61,14 +61,14 @@ Autonomous mobile robots are newly appearing in real world applications among hu
 
 As seen in Figure~\ref{fig:Triptych}, the turn-taking protocol for two humans wanting to pass to opposite sides of a door is instinctive to most people. Can robots use the same behaviour to efficiently negotiate access to doors? There is no guarantee that humans will willingly integrate themselves with unfamiliar machines - in \cite{breazeal1999build}, Breazeal and Scassellati argue that to interact socially, ``humans must believe that the robot has beliefs, desires, and intentions". By this view, successfully participating in social interactions requires behaviours that promote recognition and reciprocation from human interlocutors.
 
-With this in mind, we extended previous work on ``aggressive'' robot-robot interaction\cite{zuluaga2005reducing} for resolving deadlocks in corridors, modifying the behavior to be agnostic to whether their interlocutor is a human or another robot. Our proposed ``assertive'' system is a generalized approach to negotiating doorway interactions using only movement and distance measurements to recreate the familiar human-human social interaction.
+With this in mind, we extend previous work on ``aggressive'' robot-robot interaction\cite{zuluaga2005reducing} for resolving deadlocks in corridors, modifying the behavior to be agnostic to whether their interlocutor is a human or another robot. Our proposed ``assertive'' system is a generalized approach to negotiating doorway interactions using only movement and distance measurements to recreate the familiar human-human social interaction.
 
-Our intent is for this behavior to be socially compliant with humans, where one party passes through the door and the other defers to let them through. Compliance here means both that the robot respects a human's right of way when it would apply, but also that the human will reciprocate by respecting the robot's right of way in return. As well as reliably breaking the deadlock, we want the 'correct' participant to have priority, defined by the objective time-efficiency and the subjective opinion of a naive human participant. 
+Our intent is for this behavior to be socially compliant with humans, where one party passes through the door and the other defers to let them through. Compliance here means both that the robot respects a human's right of way when it would apply, but also that the human will reciprocate by respecting the robot's right of way in return. As well as reliably breaking the deadlock, we want the `correct' participant to have priority, defined by the objective time-efficiency and the subjective opinion of a naive human participant. 
 
    \begin{figure}
       \centering
       \includegraphics[scale=0.5]{Triptych.png}
-      \caption{Examples of human-human, human-robot and robot-robot doorway interaction.}
+      \caption{Human-human, human-robot and robot-robot doorway interaction.}
       \label{fig:Triptych}
    \end{figure}
 
@@ -80,7 +80,7 @@ The contributions of this paper are (i) a robust doorway negotiation behavior fo
 
 \subsection{Robot Navigation}
 
-Navigation is one of the most frequent topics in robotics research. Most research on robot mobility focuses on the physical dynamics and geometry of getting around without considering social interaction, such as Fox et. al's Dynamic Window Approach to collision avoidance\cite{fox1997dynamic}. Other parties are often considered generically as mobile obstacles or interfering agents, with no specific human characteristics. But in crowded environments, it can help to have a more sophisticated model of other agents' mutual behaviour. The successful Reciprocal Velocity Obstacle model proposed by van den Berg et. al\cite{van2008reciprocal} dealt with mutual collision avoidance for non-communicating agents by smooth, gradual trajectories where each agent assumes the other’s cooperation in ensuring a clean pass, directly citing an interest in ``virtual human" behavior. 
+Navigation is one of the most frequent topics in robotics research. Most research on robot mobility focuses on the physical dynamics and geometry of getting around without considering social interaction, such as the Dynamic Window Approach to collision avoidance\cite{fox1997dynamic}. Other parties are often considered generically as mobile obstacles or interfering agents, with no specific human characteristics. But in crowded environments, it can help to have a more sophisticated model of other agents' mutual behaviour. The successful Reciprocal Velocity Obstacle model\cite{van2008reciprocal} deals with mutual collision avoidance for non-communicating agents by smooth, gradual trajectories where each agent assumes the other’s cooperation in ensuring a clean pass, directly citing an interest in ``virtual human" behavior. 
 
 This line of research has led to numerous extensions, such as Biased Reciprocal Velocity Obstacles\cite{sadat2012bravo} meant to alleviate congestion by building in more context sensitivity concerning who should defer to whom, or where Karamouzas et. al\cite{karamouzas2009predictive} turned the human-inspired model back toward humans to predict collision detection for a pedestrian simulator. Nevertheless, without explicitly designing for human interaction and studying how these behaviors are perceived in real life, these projects leave open the question of whether human-inspired necessarily equals human-compliant.
 
@@ -89,35 +89,36 @@ This line of research has led to numerous extensions, such as Biased Reciprocal 
 %IROS: Explain that the various social cost/proxemic measures tend to be continuous, aimed at passive interaction in spaces like corridors, while the doorway is more of an explicit and discrete interaction.
 HRI research into compliance for human-robot behavior has already explored some parts of the problem. Kretzschmar et. al\cite{kretzschmar2016socially} produced a model for training socially-compliant trajectories directly from datasets of human observation data, in explicit recognition that navigating human environments requires adaptation to human expectations. Shiomi et. al\cite{shiomi2014towards} acknowledge in their work that solving the obstacle avoidance problem for objects is insufficient when dealing with pedestrians: models must also include the higher problem of acceptable social distances. While these proxemic-based approaches share our perspective on the needs of social HRI, their continuous and passive implementations are better suited to longer, corridor-style interactions than the explicit and discrete setting of a doorway.
 
-There is also prior evidence that humans are willing to reciprocate with robots that attempt to participate in social customs. Park et. al\cite{park2017backchannel} found ``backchannel" signals from a listening robot in dialogue with a child would encourage that child to see the robot as more attentive to their story. For adults, a robot using recognizable gaze cues in conversation was found by Mutlu et. al\cite{mutlu2009footing} to provoke the correct social response in participants, seeing themselves as addressees or bystanders as appropriate. Mutlu argues that the social acceptance of a robot necessary for its success may hinge on their behavior and how it is perceived.
+There is also prior evidence that humans are willing to reciprocate with robots that attempt to participate in social customs. Park et. al\cite{park2017backchannel} found `backchannel' signals from a listening robot in dialogue with a child would encourage that child to see the robot as more attentive to their story. For adults, a robot using recognizable gaze cues in conversation was found by Mutlu et. al\cite{mutlu2009footing} to provoke the correct social response in participants, seeing themselves as addressees or bystanders as appropriate. Mutlu argues that the social acceptance of a robot necessary for its success may hinge on their behavior and how it is perceived.
 
 \subsection{Autonomous Robot Behavior}
 
-One assumption made here is that multi-robot systems introduced to human environments will be autonomous and exhibiting self-regulated behaviors like the one we propose for doorway negotiation. When proposing design principles for autonomous agents\cite{pfeifer1996building}, Pfeifer described his ``fungus eaters" as ``systems capable of performing a set of tasks in the real world independently and without human intervention", able to deal with other robots, machines and humans while going about its business. These are properties we may want for robots operating in shared human-robot spaces. We speculate (but cannot prove) that robots that are autonomous or perceived as autonomous will be more readily accepted by humans into social interactions, making them potentially more efficient. This paper is part of our program to examine this hypothesis. 
+One assumption made here is that multi-robot systems introduced to human environments will be autonomous and exhibit self-regulated behaviors like the one we propose for doorway negotiation. When proposing design principles for autonomous agents\cite{pfeifer1996building}, Pfeifer described his ``fungus eaters" as ``systems capable of performing a set of tasks in the real world independently and without human intervention", able to deal with other robots, machines and humans while going about its business. These are properties we may want for robots operating in shared human-robot spaces. We speculate (but cannot prove) that robots that are autonomous or perceived as autonomous will be more readily accepted by humans into social interactions, making them potentially more efficient. This paper is part of our program to examine this hypothesis. 
 
 %It can be difficult to find a consistent, agreed-upon definition for autonomy, but Bekey suggests\cite{c10} ``Autonomy refers to systems capable of operating in the real-world environment without any form of external control for extended periods of time." This definition is broad, but it captures the benefit we articulated earlier of integrating robots into existing human (``real world") environments who are capable of holding up their end during social interactions without direct guidance(``external control"). 
 
 Existing research on multi-robot systems in the workplace have often had these autonomous characteristics. The STRANDS project\cite{hawes2016strands} is a sizable example where teams of robots are deployed to real office spaces for months at a time, with the stated goal of learning how to adapt and survive changes in the environment that would be fatally outside the scope of less independent robot systems. Dealing with humans around doorways is also an issue they encountered, but addressed only indirectly with passivity on the part of the robot, where humans near doors are treated as obstacles rather than potential interaction partners.
 
-These autonomous characteristics will also be present in the systems coming to share human spaces that we mentioned earlier. The self-driving car is the most obvious example, referred to almost interchangeably as the autonomous car in the popular press\cite{EconomistAuto}. The conditions involved in driving – wide open spaces, large numbers of human and robot agents, the need to act quickly without guidance in network-denied environments – suit an autonomous approach.
+These autonomous characteristics will also be present in the systems coming to share semi-structured human spaces that we mentioned earlier. The self-driving car is the most obvious example. %, referred to almost interchangeably as the autonomous car in the popular press\cite{EconomistAuto}. 
+% b The conditions involved in driving – wide open spaces, large numbers of human and robot agents, the need to act quickly without guidance in network-denied environments – suit an autonomous approach.
 
 
 \section{SYSTEM OUTLINE}
 
-The problem our behavior solves is for an autonomous robot to reliably pass through a doorway when an interlocutor on the other side (whether another robot or a human) is trying to do the same, such that each blocks the path of the other. Our robot must decide either to make way for the opponent or take the right of way if the opponent offers it, as sketched in Figure~\ref{fig:Wireframe}. Since our interlocutor may be a human or human-controlled, we cannot assume the other party shares our robot’s programming or can communicate over the same network, so the interaction must be mediated through local sensor data alone, and by direct interaction. We build on previous related work for resolving robot-robot spatial competition in tight corridors under similar constraints.
+The problem our behavior solves is for an autonomous robot to reliably pass through a doorway when an interlocutor on the other side (whether another robot or a human) is trying to do the same, such that each blocks the path of the other. Our robot must decide either to make way for the opponent or take the right of way if the opponent offers it, as sketched in Figure~\ref{fig:Wireframe}. Since our interlocutor may be a human or human-controlled, we cannot assume the other party shares our robot’s programming or can communicate over the same network, so the interaction must be mediated through local sensor data alone, and by direct interaction. We build on previous work for resolving robot-robot spatial competition in tight corridors under similar constraints.
 
     \begin{figure}
       \centering
-      \includegraphics[width=0.6\columnwidth]{wireframe.png}
+      \includegraphics[width=0.5\columnwidth]{wireframe.png}
       \caption{Sketch of outcomes for a doorway negotiation behavior. One party retreats and makes room for the other to advance. Which outcome is `correct' can be determined by some combination of an objective efficiency measure and the subjective opinion of a human interlocutor.}
       \label{fig:Wireframe}
    \end{figure}
 
 \subsection{Aggressive Displays for Robot-Robot Corridor Negotiation}
 
-In Zuluaga et al \cite{zuluaga2005reducing}, autonomous robots who approached one another in a corridor and found their paths mutually blocked would engage in a brief interaction to determine who would make way. Upon detecting each other, both robots would stop and begin backing away until one robot achieves their desired ``safe distance'' from the opponent. The safe distance is inversely proportional to the robot's ``aggression'': a simple scalar value.
+In Zuluaga et al \cite{zuluaga2005reducing}, autonomous robots that approached one another in a corridor and found their paths mutually blocked would engage in a brief interaction to determine who would make way. Upon detecting each other, both robots would stop and begin backing away until one robot achieves their desired `safe distance' from the opponent. The safe distance is inversely proportional to the robot's `aggression': a simple scalar value.
 
-On reaching its safe distance, the more aggressive robot would become ``brave" and start advancing toward the other robot, who would no longer be able to achieve their own safe distance until backing out of the corridor completely and allowing the aggressor to pass. A flowchart for this behavior can be seen in Figure~\ref{fig:Aggressive}.
+On reaching its safe distance, the more aggressive robot would become `brave' and start advancing toward the other robot, who would no longer be able to achieve their own safe distance until backing out of the corridor completely and allowing the aggressor to pass. A flowchart for this behavior can be seen in Figure~\ref{fig:Aggressive}.
  
     \begin{figure}
       \centering
@@ -126,23 +127,22 @@ On reaching its safe distance, the more aggressive robot would become ``brave" a
       \label{fig:Aggressive}
    \end{figure}
  
-A robot's aggression value is best decided dynamically by encoding the cost the robot would experience if it ``lost'' the contest. Alternatively it can be a constant: if each robot has a different constant aggression, a dominance hierarchy is obtained.
+A robot's aggression value is best decided dynamically by encoding the cost the robot would experience if it `lost' the contest. Alternatively it can be a constant: if each robot has a different constant aggression, a dominance hierarchy is obtained.
  
-This system took deliberate inspiration from aggression displays in nature, used to assert dominance or divide resources. It was speculated at the time that it would also be compatible with humans, but this was not explicitly considered during the design process or evaluated with users. 
+This system took deliberate inspiration from aggression displays in nature, used to assert dominance or divide resources. It was speculated at the time that it might also be compatible with humans, but this was not explicitly designed-in, demonstrated in practice, or user responses evaluated. Below we do all three with a slightly extended method. 
 
 
 \subsection{Assertive Displays for Robot-Human and Robot-Robot Doorway Negotiation}
 %IROS: explain a little more why we need the modification, and why we didn't bother to test the aggressive method
-We modify the aggressive display method to work in doorways rather than corridors, and with the specific needs of human-compliant interaction in mind. To wit, we adopt the term ``assertive'' instead of ``aggressive'' to  represent participating in polite human social etiquette but maintaining a willingness to assert the robot’s own right of way, and avoid the negative valence of `aggression'. We do not want the robot to always give way to humans, since this may not be the most objectively efficient ordering \cite{zuluaga2005reducing}.
+We modify the aggressive display method to work in doorways rather than corridors, and with the specific needs of human-compliant interaction in mind. In this context we prefer the term ``assertive'' instead of ``aggressive'' to  represent participating in polite human social etiquette but maintaining a willingness to assert the robot’s own right of way, and avoid the negative valence of `aggression'. We do not want the robot to always give way to humans, since this may not be the most objectively efficient ordering \cite{zuluaga2005reducing}.
 
 %IROS: Moved the specific value of the half-step to the parameter discussion to avoid giving specific implementation details in the high-level algorithm explanation.
 
 \textit{Modification 1}:  When a robot finds its path blocked, it backs up a half-step and stops, to signal it has acknowledged the impasse and is waiting for an interaction to resolve it. The motivation for this design over the previous immediate retreat is that we do not want to signal immediate deference to a human user. The pause near the door is intended to signal the robot's desire to get through the door as soon as possible.
 
-\textit{Modification 2}: Instead of signalling aggression/assertiveness by distance, we use waiting time. Instead of retreating further the robot waits, with a more assertive robot waiting a shorter time before trying to advance. While waiting, when a robot detects an advancing interlocutor it backs up and attempts to move out of the way by turning to the side, as shown in Figure~\ref{fig:Wireframe}.
+\textit{Modification 2}: Instead of signalling aggression/assertiveness by mutual distance threshold, we use waiting time. Instead of retreating further the robot waits, with a more assertive robot waiting a shorter time before trying to advance. While waiting, when a robot detects an advancing interlocutor it backs up and attempts to move out of the way by turning to the side, as shown in Figure~\ref{fig:Wireframe}.
 
-
-\textit{Modification 3}: We must also address cases where interlocutors do not move if approached, or both parties decide to advance simultaneously. We use a minimum distance which, if breached by the interlocutor while the robot is advancing, will cause the robot to stop. If the interlocutor backs away then the robot will resume advancing, otherwise the robot will wait a time inversely proportionate to the time they waited before advancing (so that a more assertive robot will wait longer for an intransigent subject to move), before switching to retreating in hopes that the interlocutor will finally clear the way. A subject that cannot or will not clear the blocked doorway is an obstacle rather than an interaction partner, and should be handled by another means beyond our scope. 
+\textit{Modification 3}: We must also address cases where interlocutors do not move if approached, or both parties decide to advance simultaneously. We use a minimum safety distance which, if breached by the interlocutor while the robot is advancing, will cause the robot to stop. If the interlocutor backs away then the robot will resume advancing, otherwise the robot will wait a time inversely proportionate to the time they waited before advancing (so that a more assertive robot will wait longer for an intransigent subject to move), before switching to retreating in the hope that the interlocutor will finally clear the way. A subject that cannot or will not clear the blocked doorway is an obstacle rather than an interaction partner, and should be handled by another means beyond our scope. 
  
     \begin{figure}
       \centering
@@ -156,13 +156,13 @@ The high-level interaction behavior flowchart can be seen in Figure~\ref{fig:Ass
 
 %IROS: Discussing how this situation is narrowly defined and how previous aggression research already explored extensions, but the core behaviour is a real interaction case worth evaluating first.
 
-It is worth acknowledging that the doorway interaction described here is strictly defined, and has not been extended to cases such as multiple agents approaching a door from the same side. Existing research on aggression has explored some of these, such as the case where a lone robot on one side of a door should yield to an opposing group\cite{zhang2006icra}. The isolated case of a head-on one-on-one interaction is nevertheless a real use case that also forms the basis of these more complicated scenarios, and warrants evaluating first for sake of clarity.
+The doorway interaction described here is deliberately a minimal case, and we do not consider cases such as multiple agents approaching a door from the same side. Existing research on aggression has explored some of these, such as the case where a lone robot on one side of a door should yield to an opposing group\cite{zhang2006icra}. The head-on, one-on-one interaction is a common use case that also forms the basis of more complicated scenarios, and warrants investigation first for sake of clarity.
 
 %Various extensions are easy to imagine, but for clarity we evaluate this simple base system.
 
 \section{EXPERIMENT AND STUDY}
 
-Our behavior is intended as a socially compliant means to solve navigation deadlocks around doors. Socially compliant here means that humans can recognize the robot's signals of intent and cooperate with it to mutual benefit. In order to test this claim, we have three hypotheses that we evaluated through a robot-robot experiment and human-robot study:
+Our behavior is proposed as a socially compliant means to solve navigation deadlocks around doors. `Socially compliant' here means that humans can recognize the robot's signals of intent and cooperate with it to mutual benefit. In order to test this claim, we have three hypotheses that we evaluated through a robot-robot experiment and human-robot study:
 
 \textbf{H1)} The assertive behavior resolves doorway navigation deadlocks for both human and robot agents.
 
@@ -179,16 +179,16 @@ The test environment for all experiments is shown in Figure~\ref{fig:Example}: a
 
 %IROS: I further explained the choice of navigation and detection algorithms, and tried to justify our permissive detections by the needs of the study. I also mentioned "for safety" on the speed in hopes of mollifying questions about why that speed was chosen.
 
-Robots were Pioneer 3DXs, mounted with SICK LMS200 forward-facing laser range finders. Localization and navigation were achieved through the standard ROS navigation stack\footnote{https://github.com/ros-planning/navigation}, using AMCL and a known map. Human detection was achieved through comparisons with the map for any unmapped obstacles, a permissive strategy as the cost of false negatives during the study would be high. The Pioneers used rear-mounted sonar rangers while retreating to avoid collisions. They had a top speed of 0.5m/s for participant safety and stood 0.74m tall due to a paperwork-storing boxy, which gave them enough physical size to make stepping over them impractical.
+Robots were Pioneer 3DXs, mounted with forward-facing SICK LMS200 scanning laser rangers. Localization and navigation used the ROS navigation stack\footnote{https://github.com/ros-planning/navigation}, using AMCL and a provided map. Human detection was achieved by comparing laser range readings with the map: large unmapped objects are assumed to be people. Any robust person detector could be substituted. The Pioneers used their rear-facing sonar rangers while retreating to avoid collisions. Robots had a top speed of 0.5m/s for participant safety. To discourage participants from stepping over the robot in the doorway, we added a cargo box on top, making it 0.74m tall.
 
 %IROS: Parameter setting discussion
-The parameters for the assertive behaviour include a 2m forward arc detection range for interaction, a 0.35m emergency stop distance, a two-second wait time when robots are being assertive and an eight-second wait otherwise. The half-step backward after detecting a human was set to 0.15m. These parameters were derived through informal testing beforehand rather than rigorous optimization, as a system requiring intense fine-tuning to perform adequately
+The key parameters for the assertive behaviour were constant for all experiments, and are: 2m forward arc detection range for interaction; 0.35m emergency stop distance; 2 second wait time when robots are being assertive and an 8 second wait otherwise; 0.15 half-step backward after detecting a human. These values were hand-derived through informal pre-trials rather than rigorous optimization. We assert that the system performance is not very sensitive to small changes in these values, but proving this is beyond the scope of this paper. 
 
-A strip of LEDs were mounted on the front of the Pioneer and would turn on when the behavior was active and turn off after arriving at its destination. These lights were green while traveling from the larger room to the smaller one and red on the return journey, which also corresponded to lower and higher assertiveness respectively, following our assumption about right of way. This very basic feedback was included to see whether participants would correlate the color of the light with the assertiveness of the robot.
+A strip of programmable LEDs were mounted on the front of the Pioneer and would turn on when the behavior was active and turn off after arriving at its destination. These lights were green while traveling from the larger room to the smaller one and red on the return journey, which also corresponded to lower and higher assertiveness respectively, following our assumption about right of way. This very basic feedback was included to see whether participants would correlate the color of the light with the assertiveness of the robot.
 
 \subsection{Robot-Robot Experiment}
 
-Each robot was set at their respective starting points either side of the doorway. At the beginning of each trial, the further robot would be given the instruction to drive to the other robot’s starting point, and after approximately one second the closer robot would receive the same instruction. This ensured the robot starting inside the smaller room would most likely reach the doorway first (with some variation on their exact meeting point) and was given the higher ``assertiveness" variable to reflect their expected right of way.
+Each robot was set at their respective starting points either side of the doorway. At the beginning of each trial, the further robot would be given the instruction to drive to the other robot’s starting point, and after approximately one second the closer robot would receive the same instruction. This ensured the robot starting inside the smaller room would most likely reach the doorway first (with some variation on their exact meeting point) and was given the higher `assertiveness' value to reflect their expected right of way.
 
 The desired outcome for each trial was that the more assertive, nearer robot would win the ensuing contest and have the other robot retreat until it could pass, whereupon the other robot would resume and finish its journey. Once both robots had reached their destinations, they would swap assertiveness values and goals and repeat the process. This was repeated 49 times, with the outcomes, interaction times and errors or other incidents recorded. 
 
@@ -196,16 +196,16 @@ The desired outcome for each trial was that the more assertive, nearer robot wou
 
 Of the 49 trials, 5 were discarded due to irrelevant navigational errors due to the commodity motion planner. Of the remaining 44 valid trails, 40 trials resolved the doorway contention in a single interaction. In the remaining four cases, each robot first believed the other robot was approaching them and both retreated simultaneously, but they correctly resolved the interaction on the second attempt. All 44 trials ended with the intended robot winning the interaction and both arriving at their desired destinations.
 
-These trials show that the assertive strategy can robustly resolve robot-robot doorway contention. 
+These trials show that the assertive strategy can robustly resolve robot-robot doorway contention, consistent with the similar aggressive strategy of \cite{zuluaga2005reducing}. 
 
 \subsection{Human-Robot Study}
 %IROS: Tried to imply age range with "students" without hard numbers
-20 participants were recruited from the general population of Simon Fraser University, predominantly students, including 8 women and 12 men. They were not compensated for their assistance.
+20 participants were recruited from the general population of Simon Fraser University, predominantly students, including 8 women and 12 men. They were not compensated. University ethics approval for human subject experiments was obtained. 
 
      \begin{figure}
       \centering
-      \includegraphics[width=\columnwidth]{test_example.png}
-      \caption{A study participant deferring to the robot's right of way}
+      \includegraphics[width=\columnwidth]{test_example_c.png}
+      \caption{A study participant asserting their right of way over the robot (left) and one deferring to the robot's right of way (right)}
       \label{fig:Example}
    \end{figure}
 
@@ -279,6 +279,7 @@ What other feedback?\\
 
      \begin{figure}
       \centering
+      % TODO: y axis needs label ('Proportion of trials'?)
       \includegraphics{outcomes.png}
       \caption{Outcomes Of Human-Robot Study Interactions Per Trial}
       \label{fig:Outcomes}
@@ -324,7 +325,7 @@ Our 20 participants were divided relatively evenly between these four categories
 The robot-robot behavior is much slower than any human-robot behavior measured. Thus the human behaviour made a positive contribution to system performance compared to robot-only system. This might be largely explained by  humans moving faster than our robots. However, the human-robot interactions observed in the four non-teleoperated trials are only marginally slower than the interaction in the second trial, where a human is controlling the robot. This suggests that in terms of efficiency, our behavior may already be operating close to what might be possible for our robot platform. Human interlocutors were able to compensate for the relatively cautious speed of the robot regardless of how it was being controlled. 
 
 %IROS: Significance testing done to aggregate results of respecting vs. not-respecting behaviour, with a t-test significance of +99%
-If we break down these time results according to our four participant behavior categories, seen in Figure~\ref{fig:Respect}, we found that participants who did not respect the robot's right of way had higher trial times than those who did across all trials. This is supported via the aggregate trial times of all interactions where the robot was respected versus all interactions where it was not, resulting in averages of 14.3 and 19.6 seconds respectively, with a t-test confidence greater than 99\%.  This reflects that while going out of turn might benefit the human individually, it degrades the throughput of the overall environment. 
+If we break down these time results according to our four participant behavior categories, seen in Figure~\ref{fig:Respect}, we found that participants who did not respect the robot's right of way had higher trial times than those who did, across all trials. This is supported via the aggregate trial times of all interactions where the robot was respected versus all interactions where it was not, which had different distributions  (t-test, $P > 99\%$) and averaged 14.3 and 19.6 seconds respectively. This reflects that while going out of turn might benefit the human's completion time individually, it degrades the throughput of the overall interaction. 
 
      \begin{figure}
       \centering
@@ -337,7 +338,7 @@ If we break down these time results according to our four participant behavior c
  
      \begin{figure*}
       \centering
-      \includegraphics[width=\textwidth]{Questionnaire.png}
+      \includegraphics[width=0.8\textwidth]{Questionnaire.png}
       \caption{Average Survey Score Per Trial Per Question }
       \label{fig:Questionnaire}
    \end{figure*}
@@ -346,25 +347,40 @@ Breaking down the scores according to our four participant categories did not pr
 
 \textbf{4) Post-Test Questionnaire:} The questionnaire data was mostly qualitative, with the exception of question three where the participant gave their preferred trial. The overall results for this question are presented in Table 3 (with one abstention).
 
-\begin{table}[h]
+%\begin{table}[h]
+%\caption{Number of Participants who Preferred Each Trial }
+%\label{Preferences}
+%\begin{center}
+%\begin{tabular}{|c||c|}
+%\hline
+%Trial One & 3\\
+%\hline
+%Trial Two & 4\\
+%\hline
+%Trial Three & 5\\
+%\hline
+%Trial Four & 3\\
+%\hline
+%Trial Five & 4\\
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
+
+\begin{table}[ht]
 \caption{Number of Participants who Preferred Each Trial }
 \label{Preferences}
 \begin{center}
-\begin{tabular}{|c||c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-Trial One & 3\\
+Trial 1 & Trial 2 & Trial 3 & Trial 4 & Trial 5 \\
 \hline
-Trial Two & 4\\
-\hline
-Trial Three & 5\\
-\hline
-Trial Four & 3\\
-\hline
-Trial Five & 4\\
+3 & 4 & 5 & 3 & 4 \\
 \hline
 \end{tabular}
 \end{center}
 \end{table}
+
 
 Breaking down these preferences by our four participant behavior categories saw no notable trend. Instead we observed common justifications shared by participants who chose the same trial as their preference. All three participants who chose trial 4 cited that they preferred the decision on whether to defer to the robot or not be taken out of their hands, and similarly those who chose trial 2 mostly cited the speed of the interaction when the robot was being teleoperated. Participants who chose one of trials 1, 3 or 5 highlighted understanding the robot's intentions and the sense that it understood theirs, sometimes even directly declaring the humanlike characteristics of the behavior.
 
@@ -448,7 +464,7 @@ Both the fifth question and the interaction accounts from the surveys produced a
 
 Our first hypothesis was that our behavior would resolve doorway navigation deadlocks, and in terms of both parties arriving at their destinations without incident that was the case in virtually all trials (a few unrelated navigation errors notwithstanding). Defined more narrowly, we found that our behavior executed as intended where the party with right of way was allowed to pass first in a single interaction in almost all robot-robot trials and those human-robot interactions where the human had right of way. 
 
-While most participants ignored the robot's right of way during at least one trial, 85\% could still complete the interaction as intended when asked to do so in trial 4. With that trial as a baseline, we can say the behavior succeeded in resolving doorway deadlocks for both humans and robots, contingent on the cooperation of the human.
+While most participants ignored the robot's right of way during at least one trial, 85\% could still complete the interaction as intended when asked to do so in Trial 4. With that trial as a baseline, we can say the behavior succeeded in resolving doorway deadlocks for both humans and robots, contingent on the cooperation of the human.
 
 Our second hypothesis concerned whether respecting objective right of way increased overall performance, and average trial times showed  improvement for those who did. However, this metric places the throughput of a shared human-robot environment above the personal benefit to the individual human of reaching their destination as soon as possible, a perspective the human may not share. This is not a problem unique to human-robot interaction, behaving socially could produce better outcomes for humanity in general over being anti-social, but hinges on the cooperation of all participants.
 
@@ -458,7 +474,7 @@ The suggestions from the questionnaire and accounts on how to enhance the intera
 
 \subsection{Limitations}
 %IROS:Further elucidated on how other environments and more agents could be explored in the future, and previous aggression work could be adapted.
-As this method is meant to generalize to any ground robot, it should be tested beyond the platform, parameters, detection methods and other particulars chosen here. It is likely that the exact form factor of the robot chosen had a significant effect on user perception of the behavior, and some performance shortfalls might be mitigated with more responsive movements and detections. 
+As this method is meant to generalize to any ground robot, it should be tested beyond the platform, parameters, detection methods and other particulars chosen here. It is likely that the exact form factor of the robot chosen had a significant effect on user perception of the behavior. 
 
 The simple green/red LED signals also provoked very little participant interest. There was no evidence that participants distinguished between different levels of assertiveness or associated them with the different colors. Instead, several participants expressed a desire in the questionnaire for more indications of a robot’s intended action and direction, whether through subtle body language or explicit flashing lights, and a few thought the robot should state its intentions aloud. 
 
@@ -473,13 +489,14 @@ One avenue of exploration was revealed by accounts of the fifth trial. In some c
 
 \section{CONCLUSION}
 
-This paper proposed an ``assertive" approach for robots to negotiate deadlocks at doors in a way compatible with both robots and humans. We tested our behavior with an experiment and a study, and found it resolved both robot-robot and human-robot impasses. Further, by examining what effect cooperation by humans had on performance and what provoked compliance, we found evidence that recognition of robot social participation by humans may be an important part of successful navigation.
+We proposed an ``assertive" approach for robots to negotiate deadlocks at doors in a way compatible with both robots and humans. We tested our behavior with an experiment and a user study, and found it resolved both robot-robot and human-robot impasses. By examining what effect cooperation had on performance, we found evidence that recognition of robot social participation by humans may contribute to the efficiency of navigation.
 
-Our system contributes to the growing effort to integrate robots into human environments. If we want to advance robots further into the public sphere where humans will be asked to share space with them, we should consider what the necessary conditions are for achieving efficient and inoffensive coexistence.
+This work contributes to our understanding of how to efficiently and inoffensively integrate robots into human environments. 
 
 \section*{ACKNOWLEDGMENT}
 
-The authors would like to thank our participants for their assistance. This work was funded by the NSERC Field Robotics Network (NCFRN) of Canada.
+%Thank you to the participants. 
+Supported by the NSERC Canadian Field Robotics Network.
 
 
 \bibliographystyle{IEEEtran}
